@@ -1,0 +1,31 @@
+.box{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #36416A;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px;
+}
+.adder{
+    /* flex: 0.7; */
+    padding: 5px;
+    grid-area: adder;
+}
+.black{
+    color: black;
+}
+
+.sortPanel{
+    color: grey;
+    cursor: pointer;
+}
+
+.addbtn{
+    padding: 5px 1vw;
+    color: white;
+    background-color: #36416A;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}

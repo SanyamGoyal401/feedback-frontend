@@ -1,0 +1,197 @@
+.icon {
+    height: 50px;
+    width: 50px;
+    grid-area: icon;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    margin-right: 10px;
+
+}
+
+
+.name {
+    grid-area: name;
+    color: #36416A;
+}
+
+.upvotes {
+    display: flex;
+    grid-area: upvotes;
+    padding: 3px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(138, 136, 136);
+}
+
+.desc {
+    color: black;
+    grid-area: desc;
+    margin-bottom: 10px;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    grid-area: categories;
+}
+
+.category {
+    padding: 0 5px;
+    border: 1px solid transparent;
+    color: #36416A;
+    margin-right: 5px;
+    background-color: #8ba5ff;
+    border-radius: 10px;
+}
+
+.commentbtn {
+    grid-area: commentbtn;
+    color: rgb(83, 83, 83);
+    display: flex;
+    cursor: pointer;
+}
+
+.editbtn {
+    background-color: #36416A;
+    color: white;
+    grid-area: editbtn;
+    border: 1px solid transparent;
+    padding: 2px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    grid-area: comment;
+}
+
+.commentinput {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    background-color: white;
+    justify-content: space-between;
+    padding: 3px;
+    border-radius: 30px;
+    grid-area: commentinput;
+}
+
+.sendbtn {
+    grid-area: sendbtn;
+    color: grey;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.input {
+    outline: none;
+    border: none;
+    width: 100%;
+    border-radius: 30px;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.commenttxt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.dotIcon{
+    flex: 0.2;
+    color: #36416A;
+}
+
+.commentTxt{
+    color: grey;
+    flex: 0.8;
+}
+
+.commentbox {
+    color: grey;
+    grid-area: commentbox;
+    max-height: 120px;
+    overflow-x: hidden;
+    margin: 10px;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar{
+    width: 15px;
+}
+::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: grey;
+    border: 5px solid transparent;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #36416A;
+}
+
+.img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50px;
+}
+
+.commentSection {
+    margin-top: 10px;
+    grid-area: commentSection;
+}
+
+
+.product {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 15px;
+    display: grid;
+    align-items: end;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 0.4fr 0.2fr 0.3fr;
+    /* grid-template-rows: 0.5fr 0.5fr 0.4fr; */
+    grid-template-areas: 'icon  name name name name .  upvotes'
+        'icon  desc desc desc desc . upvotes'
+        '. categories categories commentbtn editbtn .  comment'
+        'commentSection commentSection commentSection commentSection commentSection commentSection commentSection ';
+}
+
+@media (max-width: 550px) {
+    .comment{
+        margin-top: 10px;
+    }
+
+    .editbtn{
+        margin-right: 10px;
+        text-align: center;
+    }
+    .product{
+        grid-template-columns: 1fr 1fr 1fr 1fr 0.5fr 0.5fr;
+        grid-template-areas: 'icon name name name . upvotes'
+                                'icon desc desc desc.  upvotes'
+                                '. categories categories categories categories categories'
+                                '. commentbtn commentbtn editbn editbtn comment'
+                                'commentSection commentSection commentSection commentSection commentSection commentSection';
+    }
+}
+
+@media (min-width: 768px) {
+    .icon {
+        height: 80px;
+        width: 80px;
+    }
+}

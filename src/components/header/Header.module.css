@@ -1,0 +1,29 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #36416A;
+    color: white;
+    padding: 10px;
+    align-items: center;
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.element{
+    text-decoration: none;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+@media (min-width: 1025px){
+    .header{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}

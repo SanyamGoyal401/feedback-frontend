@@ -1,0 +1,45 @@
+.filter {
+    grid-area: filter;
+}
+
+.adder {
+    grid-area: adder;
+}
+
+
+.section {
+    display: flex;
+    flex-direction: row;
+}
+
+.products{
+    grid-area: products;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 'filter adder adder adder'
+                            'filter products products products';
+    gap: 5px;
+    padding: 10px;
+}
+
+
+@media (min-width: 1025px) {
+    .gridContainer {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    .gridContainer{
+        /* grid-template-areas: 'filter'
+                                'adder'
+                                'product'; */
+        display: flex;
+        flex-direction: column;
+    }
+}
