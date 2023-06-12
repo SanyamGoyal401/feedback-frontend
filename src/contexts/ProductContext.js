@@ -8,7 +8,6 @@ const ProductProvider = ({ children }) => {
     const fetchProducts = async (filter, sortBy) => {
         const filterArray = filter? filter.join(',') : '';
         const sortByParam = sortBy ? sortBy.toLowerCase() : '';
-        // const url = `http://localhost:8000/api/products/?filter=${filterArray}&sortBy=${sortByParam}`;
         const url = `https://feedback-backend-lc12.onrender.com/api/products/?filter=${filterArray}&sortBy=${sortByParam}`;
         try {
             const response = await fetch(url, {
@@ -29,9 +28,6 @@ const ProductProvider = ({ children }) => {
             console.log(error);
         }
     }
-    useEffect(()=>{
-        console.log(product);
-    },[product])
     return (
         <ProductContext.Provider value={{product, fetchProducts}}>
             {children}
