@@ -5,7 +5,6 @@
     border: 1px solid transparent;
     border-radius: 50px;
     margin-right: 10px;
-
 }
 
 
@@ -62,6 +61,7 @@
     border: 1px solid transparent;
     padding: 2px 5px;
     border-radius: 10px;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -193,5 +193,45 @@
     .icon {
         height: 80px;
         width: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .product{
+        grid-template-columns: 0.5fr 1fr 1fr 1fr 0.4fr 0.2fr 0.1fr 0.2fr;
+        grid-template-areas: 'icon  name name name name .  upvotes .'
+        'icon  desc desc desc desc . upvotes .'
+        '. categories categories commentbtn editbtn .  comment .'
+        '. commentSection commentSection commentSection commentSection commentSection commentSection . ';
+
+    }
+    .icon {
+        height: 100px;
+        width: 100px;
+    }
+    .name{
+        font-size: 24px;
+    }
+    .desc{
+        font-size: 18px;
+    }
+    .category{
+        font-size: 18px;
+    }
+    .commentbtn{
+        font-size: 18px;
+    }
+    .editbtn{
+        text-align: center;
+        font-size: 18px;
+    }
+    .comment{
+        font-size: 18px;
+    }
+    .upvotes{
+        font-size: 18px;
+    }
+    .commentSection{
+        font-size: 18px;
     }
 }
