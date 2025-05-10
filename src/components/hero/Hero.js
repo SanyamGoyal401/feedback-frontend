@@ -21,7 +21,7 @@ const Hero = () => {
         {showVideo && (
           <div className={styles.videoContainer}>
             <button className={styles.closeButton} onClick={() => setShowVideo(false)}>×</button>
-            <video className={styles.video} autoPlay loop>
+            <video className={styles.video} autoPlay muted loop>
               <source src="/video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
