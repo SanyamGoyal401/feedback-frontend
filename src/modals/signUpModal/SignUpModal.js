@@ -1,10 +1,10 @@
 import Modal from 'react-modal'
 import React, {useState, useEffect, useRef, useContext } from 'react';
-import { FaEnvelope, FaLock } from 'react-icons/fa';
-import styles from './LoginModal.module.css';
+import { FaUser, FaMobileAlt, FaEnvelope, FaLock } from 'react-icons/fa';
+import styles from './SignUpModal.module.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
-import SignUpModal from '../signUpModal/SignUpModal';
+import LoginModal from '../loginModal/LoginModal';
 import { ModalContext } from '../../contexts/ModalContext';
 
 
@@ -19,25 +19,27 @@ const customStyles = {
     },
 };
 
-const LoginModal = ({isLogInModalOpen, setLoginModal}) => {
+const SignUpModal = ({isSignUpModalOpen, setSignUpModal}) => {
     const{setLogIn} = useContext(AuthContext);
-    const{isSignUpModalOpen, setSignUpModal} = useContext(ModalContext);
+    const{isLogInModalOpen, setLoginModal} = useContext(ModalContext);
     const navigate = useNavigate();
-    const wpassRef = useRef();
+    const errorRef = useRef();
+    const [name, setName] = useState('')
+    const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [viewportWidth, setViewPortWidth] = useState(window.innerWidth);
 
-    const handleSignupClick = (e)=>{
+    const handleLoginClick = (e)=>{
         e.preventDefault();
-        setLoginModal(false);
-        setSignUpModal(true);
+        setSignUpModal(false);
+        setLoginModal(true);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://feedback-backend-lc12.onrender.com/api/users/auth', {
+            const response = await fetch('https://feedback-backend-lc12.onrender.com/api/users/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,14 +53,14 @@ const LoginModal = ({isLogInModalOpen, setLoginModal}) => {
                 setLogIn(true);
                 localStorage.setItem('user', JSON.stringify(user));
                 navigate('/');
-                setLoginModal(false);
+                setSignUpModal(false);
             }
             else {
-                wpassRef.current.textContent = 'Invalid Password or email!';
+                errorRef.current.textContent = 'Some error occured!';
             }
         }
         catch (error) {
-            wpassRef.current.textContent = 'Some error occured!'
+            errorRef.current.textContent = 'Some error occured!';
         }
     };
 
@@ -80,13 +82,25 @@ const LoginModal = ({isLogInModalOpen, setLoginModal}) => {
     return (
         <Modal
             style={customStyles}
-            isOpen={isLogInModalOpen}
+            isOpen={isSignUpModalOpen}
             ariaHideApp = {false}
-            onRequestClose={setLoginModal(false)}
+            onRequestClose={setSignUpModal(false)}
         >
-            <div className={styles.loginModal}>
-                <form className={styles.form} onSubmit={handleSubmit}>
-                    <h3>Log in to Continue</h3>
+            <div className={styles.signupModal}>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles.inputGroup}>
+                        <span className={styles.icon}>
+                            <FaUser size={20} />
+                        </span>
+                        <input
+                            className={styles.input}
+                            type="text"
+                            placeholder="Name"
+                            value={name}
+                            required
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.icon}>
                             <FaEnvelope size={20} />
@@ -102,25 +116,38 @@ const LoginModal = ({isLogInModalOpen, setLoginModal}) => {
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.icon}>
+                            <FaMobileAlt size={20} />
+                        </span>
+                        <input
+                            className={styles.input}
+                            type="tel"
+                            placeholder="Mobile"
+                            value={mobile}
+                            required
+                            onChange={(e) => setMobile(e.target.value)}
+                        />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <span className={styles.icon}>
                             <FaLock size={20} />
                         </span>
                         <input
                             className={styles.input}
                             type="password"
                             placeholder="Password"
-                            required
                             value={password}
+                            required
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <div className={styles.signup}>
-                        Don't have an account? <span className={styles.link} onClick={handleSignupClick}>SignUp</span>
+                    <div>
+                        <span ref={errorRef} className={styles.error}></span>
                     </div>
-                    <SignUpModal isSignUpModalOpen={isSignUpModalOpen} setSignUpModal={setSignUpModal}/>
-                    <div>       
-                        <span ref={wpassRef} className={styles.wpass}></span>
+                    <div className={styles.login}>
+                        Already have an account? <span className={styles.link}onClick={handleLoginClick}>LogIn</span>
                     </div>
-                    <button className={styles.loginbtn} type="submit">Login</button>
+                    <LoginModal isLogInModalOpen={isLogInModalOpen} setLoginModal={setLoginModal}/>
+                    <button className={styles.signupbtn} type="submit">Signup</button>
                 </form>
                 {
                     viewportWidth > 768 ? <div className={styles.feedbackHead}>
@@ -134,4 +161,4 @@ const LoginModal = ({isLogInModalOpen, setLoginModal}) => {
     )
 }
 
-export default LoginModal;
+export default SignUpModal;

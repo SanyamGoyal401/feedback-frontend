@@ -6,6 +6,7 @@ import { ProductProvider } from './contexts/ProductContext';
 import { FilterProvider } from './contexts/FilterContext';
 import { SortProvider } from './contexts/SortContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { ModalProvider } from './contexts/ModalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,7 +16,9 @@ root.render(
       <ProductProvider>
         <FilterProvider>
           <SortProvider>
-            <App />
+            <ModalProvider>
+              <App />
+            </ModalProvider>
           </SortProvider>
         </FilterProvider>
       </ProductProvider>

@@ -6,16 +6,17 @@ import { ProductContext } from '../../contexts/ProductContext'
 import { SortContext } from '../../contexts/SortContext.js';
 import { FilterContext } from '../../contexts/FilterContext.js';
 import AddModal from '../../modals/addProduct/AddModal';
+import { ModalContext } from '../../contexts/ModalContext';
 
 const Adder = () => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const {isLogInModalOpen , setLoginModal} = useContext(ModalContext);
     const { product, fetchProducts } = useContext(ProductContext);
     const { sortBy, setSortBy } = useContext(SortContext);
     const [viewportWidth, setViewPortWidth] = useState(window.innerWidth);
     const { filter } = useContext(FilterContext);
-    const [sort, setSort] = useState('upvotes');
+    const [sort, setSort] = useState('downvotes');
     const [isAddModalOpen, setIsAddOpen] = useState(false);
-    const [isLoginModalOpen, setIsLoginOpen] = useState(false);
 
     const handleClick = () => {
         sort === 'upvotes' ? setSort('downvotes') : setSort('upvotes');
@@ -25,7 +26,7 @@ const Adder = () => {
             setIsAddOpen(true)
         }
         else{
-            setIsLoginOpen(true);
+            setLoginModal(true);
         }
     }
     useEffect(() => {
@@ -48,7 +49,7 @@ const Adder = () => {
     return (
 
         <div className={styles.adder}>
-            <LoginModal isModalOpen = {isLoginModalOpen} setIsOpen = {setIsLoginOpen}/>
+            <LoginModal isLogInModalOpen={isLogInModalOpen} setLoginModal={setLoginModal}/>
             <AddModal isModalOpen = {isAddModalOpen} setIsOpen = {setIsAddOpen}/>
             <div className={styles.box}>
                 <h4>{product.length + " Suggestions"}</h4>
@@ -56,7 +57,7 @@ const Adder = () => {
                     {
                         viewportWidth < 500 ? "" : "Sort by: "
                     }
-                    <span className={styles.black}>{sort} {sort === 'upvotes' ? <BsArrowUpShort size={25} /> : <BsArrowDownShort size={25} />}</span>
+                    <span className={styles.black}>{"upvotes"} {sort === 'upvotes' ? <BsArrowUpShort size={25} /> : <BsArrowDownShort size={25} />}</span>
                 </div>
                 <div className={styles.addbtn} onClick={addClick}>
                     + Add product
